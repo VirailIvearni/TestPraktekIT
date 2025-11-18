@@ -8,15 +8,13 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
-class AuthController extends Controller  // Pastikan extends Controller
+class AuthController extends Controller  
 {
-    // Show Login Form
     public function showLoginForm()
     {
         return view('auth.login');
     }
 
-    // Process Login
     public function login(Request $request)
     {
         $credentials = $request->validate([
@@ -34,13 +32,11 @@ class AuthController extends Controller  // Pastikan extends Controller
         ])->onlyInput('email');
     }
 
-    // Show Register Form
     public function showRegisterForm()
     {
         return view('auth.register');
     }
 
-    // Process Register
     public function register(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -66,7 +62,6 @@ class AuthController extends Controller  // Pastikan extends Controller
         return redirect()->route('login')->with('success', 'Registrasi berhasil! Silakan login.');
     }
 
-    // Process Logout
     public function logout(Request $request)
     {
         Auth::logout();
