@@ -9,7 +9,7 @@
 </head>
 <body>
 <div class="d-flex">
-    <!-- Sidebar -->
+    
     <nav class="bg-dark text-white p-3 vh-100" style="width: 250px; position: fixed;">
         <h4 class="mb-4">
             <a href="{{ route('dashboard.index') }}" class="text-white text-decoration-none">
@@ -41,24 +41,19 @@
         </ul>
     </nav>
 
-    <!-- Profil Card -->
     <div class="container mt-5" style="max-width: 600px; margin-left: 260px;">
         <div class="card shadow text-center">
             <div class="card-body">
 
-                <!-- Foto Kandidat -->
                 <img src="{{ $user->foto ? asset('assets/image/' . $user->foto) : asset('assets/image/default.png') }}" 
                 alt="Foto Kandidat" 
                 class="rounded-circle mb-3" 
                 style="width:150px;height:150px;object-fit:cover;">
 
-                <!-- Nama Kandidat -->
                 <h3 class="fw-bold">{{ $user->name }}</h3>
 
-                <!-- Email Kandidat -->
                 <h5 class="text-muted">{{ $user->posisi }}</h5>
 
-                <!-- Tombol Edit Profil -->
                 <a href="{{ route('profil.edit') }}" class="btn btn-warning mt-3">
                     <i class="bi bi-pencil-square me-1"></i> Edit Profil
                 </a>
