@@ -10,12 +10,10 @@ use Illuminate\Validation\Rule;
 
 class SiswaController extends Controller
 {
-    // Tampilkan list semua siswa beserta nama lembaga terkait
     public function index(Request $request)
     {
         $query = Siswa::with('lembaga');
         
-        // Filter berdasarkan lembaga_id jika ada
         if ($request->has('lembaga_id') && $request->lembaga_id != '') {
             $query->where('lembaga_id', $request->lembaga_id);
         }
@@ -26,17 +24,14 @@ class SiswaController extends Controller
         return view('siswa.index', compact('siswa', 'lembaga'));
     }
 
-    // Tampilkan form tambah siswa baru
     public function create()
     {
         $lembaga = Lembaga::all();
         return view('siswa.create', compact('lembaga'));
     }
 
-    // Simpan data siswa baru ke database
     public function store(Request $request)
     {
-        // Validasi inputan
         $request->validate([
             'lembaga_id' => 'required|exists:lembaga,id',
             'nis' => 'required|numeric|unique:siswa,nis',
@@ -45,15 +40,12 @@ class SiswaController extends Controller
             'image' => 'nullable|image|mimes:jpg,png|max:100',
         ]);
 
-        // Ambil data yang valid dari request
         $data = $request->only(['lembaga_id', 'nis', 'nama', 'email']);
 
-        // Jika ada file image, proses upload
         if ($request->hasFile('image')) {
             $file = $request->file('image');
             $filename = time() . '_' . $file->getClientOriginalName();
 
-            // Pastikan folder ada
             if (!file_exists(public_path('assets/images'))) {
                 mkdir(public_path('assets/images'), 0777, true);
             }
@@ -62,7 +54,6 @@ class SiswaController extends Controller
             $data['image'] = $filename;
         }
 
-        // Simpan data siswa baru
         Siswa::create($data);
 
         return redirect()->route('siswa.index')->with('success', 'Data siswa berhasil ditambahkan');
@@ -74,7 +65,6 @@ class SiswaController extends Controller
         return view('siswa.show', compact('siswa'));
     }
 
-    // Tampilkan form edit data siswa
     public function edit($id)
     {
         $siswa = Siswa::findOrFail($id);
@@ -83,12 +73,10 @@ class SiswaController extends Controller
         return view('siswa.edit', compact('siswa', 'lembaga'));
     }
 
-    // Update data siswa di database
     public function update(Request $request, $id)
     {
         $siswa = Siswa::findOrFail($id);
 
-        // Validasi inputan update
         $request->validate([
             'lembaga_id' => 'required|exists:lembaga,id',
             'nis' => ['required', 'numeric', Rule::unique('siswa', 'nis')->ignore($siswa->id)],
@@ -111,23 +99,19 @@ class SiswaController extends Controller
             $data['image'] = $filename;
         }
 
-        // Update data siswa
         $siswa->update($data);
 
         return redirect()->route('siswa.index')->with('success', 'Data siswa berhasil diupdate');
     }
 
-    // Hapus data siswa
     public function destroy($id)
     {
         $siswa = Siswa::findOrFail($id);
 
-        // Hapus file image jika ada
         if ($siswa->image && file_exists(public_path('assets/images/' . $siswa->image))) {
             unlink(public_path('assets/images/' . $siswa->image));
         }
 
-        // Hapus data siswa
         $siswa->delete();
 
         return redirect()->route('siswa.index')->with('success', 'Data siswa berhasil dihapus');
@@ -140,7 +124,6 @@ class SiswaController extends Controller
     {
         $query = Siswa::with('lembaga');
         
-        // Filter berdasarkan lembaga_id jika ada
         if ($request->has('lembaga_id') && $request->lembaga_id != '') {
             $query->where('lembaga_id', $request->lembaga_id);
             $lembaga = Lembaga::find($request->lembaga_id);
@@ -164,22 +147,18 @@ class SiswaController extends Controller
         $callback = function() use ($siswas, $lembagaName) {
             $file = fopen('php://output', 'w');
             
-            // UTF-8 BOM untuk Excel
             fwrite($file, "\xEF\xBB\xBF");
             
-            // Header dengan informasi filter
             fputcsv($file, ['Lembaga:', $lembagaName]);
             fputcsv($file, ['Tanggal Export:', date('d-m-Y H:i')]);
             fputcsv($file, ['Total Data:', count($siswas)]);
             fputcsv($file, []); // Baris kosong
             
-            // Header tabel
             fputcsv($file, [
                 'No', 'Nama Lembaga', 'NIS', 'Nama Siswa', 
                 'Email', 'Foto', 'Tanggal Dibuat', 'Tanggal Diupdate'
             ]);
 
-            // Data
             $counter = 1;
             foreach ($siswas as $siswa) {
                 fputcsv($file, [
