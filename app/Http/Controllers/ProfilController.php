@@ -6,11 +6,11 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 
-class ProfilController extends Controller  // Pastikan extends Controller
+class ProfilController extends Controller  
 {
     public function __construct()
     {
-        $this->middleware('auth');  // Sekarang middleware() akan tersedia
+        $this->middleware('auth');  
     }
 
     public function index()
@@ -41,12 +41,10 @@ class ProfilController extends Controller  // Pastikan extends Controller
         $user->email = $request->email;
 
         if ($request->hasFile('foto')) {
-            // Hapus foto lama jika ada
             if ($user->foto && file_exists(public_path('assets/image/' . $user->foto))) {
                 unlink(public_path('assets/image/' . $user->foto));
             }
 
-            // Simpan foto baru
             $file = $request->file('foto');
             $filename = time() . '_' . $file->getClientOriginalName();
             $file->move(public_path('assets/image'), $filename);
