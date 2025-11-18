@@ -9,7 +9,7 @@
 </head>
 <body>
 <div class="d-flex">
-    <!-- Sidebar -->
+
     <nav class="bg-dark text-white p-3 vh-100" style="width: 250px; position: fixed;">
         <h4 class="mb-4">
             <a href="{{ route('dashboard.index') }}" class="text-white text-decoration-none">Dashboard</a>
@@ -39,7 +39,6 @@
         </ul>
     </nav>
 
-    <!-- Main Content -->
     <div class="container mt-5" style="margin-left: 270px; max-width: 600px;">
         <div class="card shadow">
             <div class="card-header bg-warning text-white">
@@ -61,7 +60,6 @@
                     @csrf
                     @method('PUT')
 
-                    <!-- Foto -->
                     <div class="mb-3 text-center">
                         <img src="{{ $user->foto ? asset('assets/image/' . $user->foto) : asset('assets/image/default.png') }}" 
                         alt="Foto Kandidat" 
@@ -70,13 +68,11 @@
                         <input type="file" name="foto" class="form-control mt-2" accept=".jpg,.png">
                     </div>
 
-                    <!-- Nama -->
                     <div class="mb-3">
                         <label class="form-label">Nama</label>
                         <input type="text" name="name" class="form-control" value="{{ $user->name }}" required>
                     </div>
 
-                    <!-- Posisi -->
                     <div class="mb-3">
                         <label class="form-label">Posisi</label>
                         <input type="text" name="posisi" class="form-control" value="{{ $user->posisi }}" required>
