@@ -13,7 +13,6 @@
 
 <div class="d-flex">
 
-    <!-- SIDEBAR -->
     <nav class="bg-dark text-white p-3 vh-100" style="width: 250px; position: fixed;">
         <h4 class="mb-4">
             <a href="{{ route('dashboard.index') }}" class="text-white text-decoration-none">Dashboard</a>
@@ -45,7 +44,6 @@
         </ul>
     </nav>
 
-    <!-- MAIN CONTENT -->
     <main class="flex-grow-1 p-4" style="margin-left: 250px;">
         <div class="container-fluid">
 
@@ -61,7 +59,6 @@
                 </a>
             </div>
 
-            <!-- FILTER LEMBAGA -->
             <div class="row mb-3">
                 <div class="col-md-4">
                     <select id="filterLembaga" class="form-select">
@@ -73,7 +70,6 @@
                 </div>
             </div>
 
-            <!-- TABLE -->
             <table id="myTable" class="display table table-striped">
                 <thead>
                     <tr>
@@ -126,7 +122,6 @@
 
 </div>
 
-<!-- JS -->
 <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
@@ -144,7 +139,6 @@ $(document).ready(function() {
         ]
     });
 
-    // FILTER NIS & NAMA (CARA YANG BENAR)
     $('#myTable_filter input').off().on('keyup', function() {
         let value = this.value.toLowerCase();
 
@@ -162,7 +156,6 @@ $(document).ready(function() {
         table.draw();
     });
 
-    // FILTER LEMBAGA
     $('#filterLembaga').on('change', function() {
         let val = this.value.toLowerCase();
 
