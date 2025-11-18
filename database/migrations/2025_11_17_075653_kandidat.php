@@ -10,9 +10,9 @@ return new class extends Migration
     {
         Schema::create('kandidats', function (Blueprint $table) {
             $table->id();
-            $table->string('nama');            // nama kandidat
-            $table->string('position');        // posisi/jabatan kandidat
-            $table->string('image')->nullable(); // foto kandidat (boleh kosong)
+            $table->string('nama');            
+            $table->string('position');        
+            $table->string('image')->nullable(); 
             $table->timestamps();
         });
     }
