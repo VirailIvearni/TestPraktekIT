@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Siswa</title>
 
-    <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 </head>
@@ -13,7 +12,6 @@
 
 <div class="d-flex">
 
-    <!-- SIDEBAR -->
     <nav class="bg-dark text-white p-3 vh-100" style="width: 250px; position: fixed;">
             <h4 class="mb-4">
                 <a href="{{ route('dashboard.index') }}" class="text-white text-decoration-none">
@@ -45,7 +43,6 @@
         </ul>
     </nav>
 
-    <!-- CONTENT -->
     <main class="flex-grow-1 p-4" style="margin-left: 250px;">
         <div class="container">
 
@@ -133,7 +130,6 @@
 
 </div>
 
-<!-- Bootstrap JS + jQuery -->
 <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
