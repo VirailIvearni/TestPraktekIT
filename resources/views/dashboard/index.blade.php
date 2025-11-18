@@ -3,7 +3,6 @@
 
 <div class="d-flex">
 
-    <!-- SIDEBAR -->
     <nav class="bg-dark text-white p-3 vh-100" style="width: 250px; position: fixed;">
         <h4 class="mb-4">
                 <a href="{{ route('dashboard.index') }}" class="text-white text-decoration-none">
@@ -36,7 +35,6 @@
         </ul>
     </nav>
 
-    <!-- CONTENT -->
     <main class="flex-grow-1 p-4" style="margin-left: 250px;">
         <h2 class="mb-4">Dashboard Siswa</h2>
 
@@ -51,7 +49,6 @@
                 </div>
             </div>
 
-            <!-- Total Per Lembaga -->
             @foreach($totalPerLembaga as $l)
             <div class="col-md-3 col-sm-6">
                 <div class="card text-white bg-success h-100">
