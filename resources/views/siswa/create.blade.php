@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tambah Siswa</title>
 
-    <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 </head>
@@ -51,7 +50,6 @@
 
                     <div class="card-body">
 
-                        {{-- Error Validasi --}}
                         @if ($errors->any())
                             <div class="alert alert-danger">
                                 <ul class="mb-0">
@@ -65,7 +63,6 @@
                         <form action="{{ route('siswa.store') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             
-                            {{-- Lembaga --}}
                             <div class="mb-3">
                                 <label class="form-label">Lembaga</label>
                                 <select name="lembaga_id" class="form-select" required>
@@ -76,19 +73,16 @@
                                 </select>
                             </div>
 
-                            {{-- NIS --}}
                             <div class="mb-3">
                                 <label class="form-label">NIS</label>
                                 <input type="text" name="nis" class="form-control" placeholder="Masukkan NIS" required>
                             </div>
 
-                            {{-- Nama --}}
                             <div class="mb-3">
                                 <label class="form-label">Nama Siswa</label>
                                 <input type="text" name="nama" class="form-control" placeholder="Masukkan Nama Siswa" required>
                             </div>
 
-                            {{-- Email --}}
                             <div class="mb-3">
                                 <label class="form-label">Email</label>
                                 <input type="email" name="email" class="form-control" placeholder="Masukkan Email" required>
@@ -99,7 +93,6 @@
                                 <input type="file" name="image" class="form-control" accept=".jpg,.jpeg,.png">
                             </div>
 
-                            {{-- Tombol --}}
                             <button type="submit" class="btn btn-success">Simpan</button>
                             <a href="{{ route('siswa.index') }}" class="btn btn-secondary ms-2">Kembali</a>
 
@@ -112,7 +105,6 @@
         </div>
     </div>
 </div>
-<!-- Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
