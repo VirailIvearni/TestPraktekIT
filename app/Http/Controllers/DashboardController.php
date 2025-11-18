@@ -10,13 +10,10 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        // Total siswa keseluruhan
         $totalSiswa = Siswa::count();
 
-        // Ambil semua lembaga
         $lembaga = Lembaga::all();
 
-        // Hitung total siswa per lembaga
         $totalPerLembaga = $lembaga->map(function($l){
             return (object)[
                 'nama_lembaga' => $l->nama_lembaga,
